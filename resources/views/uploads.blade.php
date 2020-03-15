@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>cropit</title>
+    <title>Crop Image</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="/js/jquery.cropit.js"></script>
 
@@ -53,13 +53,14 @@
 <body>
     <div class="container">
         <h5>Image Upload Example Laravel 7</h5>
-        <form action="#">
+        <form action="/" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="row">
                 <div class="image-editor">
                     <div class="col s6">
                         <div class="file-field input-field">
                             <div class="btn">
-                                <span>Image</span>
+                                <span>Select Image</span>
                                 <input type="file" class="cropit-image-input">
                             </div>
                             <div class="file-path-wrapper">
@@ -80,17 +81,14 @@
                         <input type="range" class="cropit-image-zoom-input">
                     </p>
                     <div class="col s12">
-                    <input type="hidden" name="image-data" class="hidden-image-data" />
-                    <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                        <input type="hidden" name="image-data" class="hidden-image-data" />
+                        <button type="submit" class="waves-effect waves-light btn">Submit</button>
                     </div>
                 </div>
             </div>
         </form>
 
-        <div id="result">
-            <code>$form.serialize() =</code>
-            <code id="result-data"></code>
-        </div>
+
     </div>
     <script>
         $(function() {
@@ -101,12 +99,6 @@
                 var imageData = $('.image-editor').cropit('export');
                 $('.hidden-image-data').val(imageData);
 
-                // Print HTTP request params
-                var formValue = $(this).serialize();
-                $('#result-data').text(formValue);
-
-                // Prevent the form from actually submitting
-                return false;
             });
         });
 

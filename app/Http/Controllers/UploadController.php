@@ -9,4 +9,8 @@ class UploadController extends Controller
     public function index() {
         return view('uploads');
     }
+
+    public function store(Request $request) {
+        dd($request->all());
+    }
 }
